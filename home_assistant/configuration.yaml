@@ -23,7 +23,7 @@ mqtt:
 # Intégration dans Google Home
 google_assistant:
   project_id: home-assistant-vlr
-  service_account: !include svc_ha_admin.json # Généré depuis la console Google Cloud
+  service_account: !include service_account.json # Généré depuis la console Google Cloud
   report_state: true
   exposed_domains:
     - climate

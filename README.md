@@ -77,3 +77,26 @@ Une fois le tout installé et configuré, il devient possible de piloter la PAC 
 Attention, au début, je ne parvenais pas à modifier les valeurs mais seulement à les afficher. Pour pouvoir les modifier, il faut se rendre dans **Paramètres** et modifier la valeur **Général > Accès en écriture (niveau)** à **Activé (complet)**. Sinon vous serez uniquement en lecture seule.
 
 ### Mise en place de Home Assistant
+A nouveau, je ne vais rien inventer de plus que ce blog qui résume très bien comment installer une VM Home Assistant sur un NAS Synology (mon cas) : https://www.cachem.fr/synology-home-assistant-vm/
+
+Si cela vous effraie, sachez qu'il est possible d'acheter une BOX domotique toute prête dans laquelle Home Assistant est déjà installé : https://www.domadoo.fr/fr/produits-compatibles-home-assistant/7046-nabu-casa-box-domotique-home-assistant-green-0860011789703.html?srsltid=AfmBOoqawa1pB0I6udh0El10Sf2ktNsAlTy-ikXN4vOSJvcocsIjfeRV
+
+### Configuration de Home Assistant
+
+J'ai suivi cet excellent Github : https://github.com/ryann72/Home-assistant-tutoriel/blob/main/BSB-LAN/tutoriel%20BSB-LAN.md
+
+Là, par contre, j'ai davantage de choses à vous raconter. Pour la configuration de Home Assistant, j'ai procédé à plusieurs étapes :
+ 1. J'ai installé le module **File Editor** (Dans **Paramètres > Modules Complémentaires**) ainsi que **Mosquitto Broker**
+ 2. Une fois File Editor installé, il faut le démarrer et j'ai coché la case **Ajouter à la barre latérale** pour y accéder plus rapidement
+ 3. A l'aide de File Editor, j'ai créé plusieurs fichiers :
+     - **configuration.yaml** : permet de configurer Home Assistant
+     - **mqtt.yaml** : permet de gérer la communication vers le BSB
+     - **button.yaml** : permet de créer des boutons dans l'interface Home Assistant
+     - **climate.yaml** : permet de gérer les thermostats
+     - **select.yaml** : permet de créer des listes déroulantes
+     - **switch.yaml** : permet de créer des boutons également qui me seront utiles ensuite avec Google Home
+     - **service_account.json** : contient les informations pour communiquer avec Google Cloud
+
+Je vous mets tous mes fichiers ici : https://github.com/vincent2mots/domotique/tree/main/home_assistant
+
+**Attention au fichier mqtt.yaml** : il contient les informations de communication vers ma PAC mais si votre PAC est différente, il vous faudra adapter ce fichier (et les autres aussi sans doute!)
