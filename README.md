@@ -83,10 +83,9 @@ A nouveau, je ne vais rien inventer de plus que ce blog qui résume très bien c
 Si cela vous effraie, sachez qu'il est possible d'acheter une BOX domotique toute prête dans laquelle Home Assistant est déjà installé : https://www.domadoo.fr/fr/produits-compatibles-home-assistant/7046-nabu-casa-box-domotique-home-assistant-green-0860011789703.html?srsltid=AfmBOoqawa1pB0I6udh0El10Sf2ktNsAlTy-ikXN4vOSJvcocsIjfeRV
 
 ### Communication entre BSB et Home Assistant
-J'ai suivi cet excellent Github : https://github.com/ryann72/Home-assistant-tutoriel/blob/main/BSB-LAN/tutoriel%20BSB-LAN.md
+&#128161; J'ai suivi cet excellent Github : https://github.com/ryann72/Home-assistant-tutoriel/blob/main/BSB-LAN/tutoriel%20BSB-LAN.md
 
 #### Configuration Home Assistant
-
 Là, par contre, j'ai davantage de choses à vous raconter. Pour la configuration de Home Assistant, j'ai procédé à plusieurs étapes :
  1. J'ai installé le module **File Editor** (Dans **Paramètres > Modules Complémentaires**) ainsi que **Mosquitto Broker**
  2. Une fois File Editor installé, il faut le démarrer et j'ai coché la case **Ajouter à la barre latérale** pour y accéder plus rapidement
@@ -110,6 +109,9 @@ Dans la partie **Paramètres**, j'ai mis tous les paramètres de la PAC qui m'in
 ```
 700,710,712,8740,1000,1010,1012,1600,8700,8830,8411,8412,8410,8000,8001,8003,8730,8821,1,2,3
 ```
+
+La liste complète des paramètres se trouve ici : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/bsb_lan.png)
 
 ### La partie visuelle dans Home Assistant 
 Toujours à l'aide de File Editor, j'ai créé les fichiers suivants :
@@ -168,6 +170,8 @@ Quelques infos :
 Enfin, pour que le tout fonctionne, il faut produire un certificat qui va permettre de sécuriser vos échanges (la sécurité avant tout). Cela se fait dans **Panneau de configuration > Sécurité > Certificat**. J'ai pour ma part utilisé les certificats Let's Encrypt qui sont gratuits : 
 ![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/certificat.png)
 
+&#128161; A noter qu'il faut un nom de domaine pour pouvoir exposer votre Home Assistant sur Internet
+
 #### Etape 3 : Rediriger les ports
 Maintenant que la partie reverse proxy est faite, il faut que votre box Internet fasse le mapping entre ce qui arrive d'Internet et votre réseau interne en faisant une redirection de port.
 
@@ -176,8 +180,15 @@ De mon côté, j'ai une freebox Ultra. Je me suis donc rendu sur l'URL suivante 
 Là, je me suis rendu dans **Paramètres de la freebox > Gestion des ports**
 ![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_1.png)
 
+Là j'ai créé ma redirection pour que le flux entrant sur ma box redirige vers le bon port en interne : 
 ![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_2.png)
 
+Plus de détail sur la règle de redirection de port : 
 ![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_3.png)
 
+Arrivé à cette étape, je suis capable de me connecter à Home Assistant depuis l'extérieur de mon domicile!
+
 ### Intégration à Google Home
+A nouveau, l'excellente documentation suivante explique le pas à pas pour créer le lien entre votre Home Assistant exposé et Google Cloud : https://www.home-assistant.io/integrations/google_assistant/
+
+Cette dernière étape n'est pas compliquée
