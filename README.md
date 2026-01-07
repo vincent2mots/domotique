@@ -191,4 +191,8 @@ Arrivé à cette étape, je suis capable de me connecter à Home Assistant depui
 ### Intégration à Google Home
 A nouveau, l'excellente documentation suivante explique le pas à pas pour créer le lien entre votre Home Assistant exposé et Google Cloud : https://www.home-assistant.io/integrations/google_assistant/
 
-Cette dernière étape n'est pas compliquée
+Cette dernière étape n'est pas compliquée et devrait vous permettre d'ajouter votre PAC dans Google Home : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/google_home_service.png)
+
+Pour enfin avoir tout à portée de doigts :
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/google_home_final.png)
