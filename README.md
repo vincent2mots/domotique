@@ -13,6 +13,19 @@ Avant toute chose, je raconte ici les différentes étapes pour parvenir à cett
 
 ### Schéma final de communication
 
+Voici le schéma final de mon installation : 
+
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/schema.png)
+
+**Ca peut faire peur mais si on résume :**
+ 1. La PAC dans laquelle j'ai installé le BSB LAN branché sur le microcontrôleur OLIMEX ESP32 POE ISO
+ 2. IL y a mon NAS qui me permet deux fonctionnalités importantes ici :
+     1. *Il me permet de virtualiser une machine contenant Home Assistant et le broker Mosquitto qui va communiquer avec le combo Olimex / BSB*
+     2. *Il dispose d'un reverse proxy qui va me permettre d'exposer Home Assistant sur Internet, pour pouvoir ensuite le lier avec Google Cloud*
+ 3. Il y a ma Freebox Ultra qui me permet surtout de faire de la redirection de ports du domaine Internet vers mon réseau local (pour exposer correctement Home Assistant sur le web)
+ 4. Enfin il y a la partie Google Cloud et Google Home qui me permet de piloter ma PAC (et d'autres appareils) depuis mon smartphone, à l'aide de l'application Google Home
+
+
 ### Liens utiles
  - Le blog qui m'a permi de commencer la domotisation : https://www.sheevaboite.fr/articles/domotiser-pompe-chaleur-atlantic-alfea-bsb-lan/
   - La super documentation de l'installation du BSB-LAN : https://docs.bsb-lan.de/fr/index.html
