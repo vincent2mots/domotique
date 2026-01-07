@@ -50,3 +50,30 @@ Ensuite, il vous faut un microcontôleur. Plusieurs options sont possibles (ESP3
 Avec l'envoi, le coût passe à 46 € environ.
 
 **On est donc sur un coût inférieur à 100 € tout compris**
+
+### Installation du BSB LAN et du micro contrôleur
+Ma PAC dispose d'une carte Siemens AVS55. J'ai donc branché le BSB LAN à l'emplacement indiqué : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/carte_siemens_AvS55.jpg)
+
+Voici l'image complète de l'installation : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/installation_bsb.jpg)
+
+le micro contrôleur est alimenté par du micro USB avec un chargeur de téléphone.
+
+### Configuration du micro contrôleur
+Pour cette partie, je ne vais pas refaire la documentation officielle du BSB LAN qui est parfaite et très claire : https://docs.bsb-lan.de/fr/install.html#assemblage-de-ladaptateur-bsb-lan
+
+Mais je résume les étapes :
+ 1. Il va falloir installer l'IDE Arduino sur votre poste et cloner le GIT de BSB LAN pour récupérer toutes les infos
+ 2. Il va falloir connecter le micro contrôleur à votre PC pour y charger le programme (on parle ici de flasher la carte). Attention, cela ne fonctionnait pas chez moi dans un premier temps car le câble que j'avais utilisé ne transmettait pas de data! Attentio à ce point
+ 3. Une fois le programme chargé, on installe le tout dans la PAC
+ 4. On peut alors visiter le site local : http://bsb-lan.local
+ 5. Ici, il faut alors télécharger la liste des paramètres spécifiques à l'appareil et envoyer le fichier à Frederik à nouveau. Il vous renverra un fichier et il faudra à nouveau flasher la carte avec l'IDE Arduino
+ 6. C'est fini!
+
+### Premiers tests avec l'URL bsb-lan.local
+Une fois le tout installé et configuré, il devient possible de piloter la PAC depuis le site local : http://bsb-lan.local
+
+Attention, au début, je ne parvenais pas à modifier les valeurs mais seulement à les afficher. Pour pouvoir les modifier, il faut se rendre dans **Paramètres** et modifier la valeur **Général > Accès en écriture (niveau)** à **Activé (complet)**. Sinon vous serez uniquement en lecture seule.
+
+### Mise en place de Home Assistant
