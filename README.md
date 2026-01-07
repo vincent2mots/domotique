@@ -104,7 +104,12 @@ Pour pouvoir lire / écrire avec Home Assistant, il faut configurer MQTT côté 
 Il faut d'abord activer le paramètre général **Afficher les réglages avancés**
 
 Ensuite, on peut configurer la partie MQTT : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/mqtt_bsb_lan.png)
 
+Dans la partie **Paramètres**, j'ai mis tous les paramètres de la PAC qui m'intéressaient personnellement. Dans mon cas, c'est la liste suivante : 
+```
+700,710,712,8740,1000,1010,1012,1600,8700,8830,8411,8412,8410,8000,8001,8003,8730,8821,1,2,3
+```
 
 ### La partie visuelle dans Home Assistant 
 Toujours à l'aide de File Editor, j'ai créé les fichiers suivants :
