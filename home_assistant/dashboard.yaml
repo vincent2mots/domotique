@@ -1,0 +1,35 @@
+views:
+  - path: default_view
+    title: Home
+    cards:
+      - square: false
+        type: grid
+        columns: 1
+        cards:
+          - type: thermostat
+            entity: climate.circuit_pac_2_etage
+            features:
+              - type: climate-hvac-modes
+                hvac_modes:
+                  - auto
+                  - heat
+                  - cool
+                  - 'off'
+          - type: thermostat
+            entity: climate.circuit_pac_rdc_au_sol
+            features:
+              - type: climate-hvac-modes
+                hvac_modes:
+                  - auto
+                  - heat
+                  - cool
+                  - 'off'
+      - type: weather-forecast
+        entity: weather.forecast_maison
+        show_forecast: false
+      - type: entities
+        entities:
+          - select.pac_rdc_mode_de_fonctionnement
+      - type: entities
+        entities:
+          - button.pac_synchroniser_date_heure

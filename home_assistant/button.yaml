@@ -1,0 +1,21 @@
+   ############################################################
+   ##                         MQTT  BSB lan bouton           ##
+   ############################################################
+- unique_id: "PAC RDC mode auto"
+  name: "PAC RDC mode auto"
+  command_topic: "BSB"
+  payload_press: "S700=1
+  qos: 0
+  retain: false
+  entity_category: "config"
+      
+      
+- unique_id: pac_sync_datetime
+  name: "PAC – Synchroniser date/heure"
+  command_topic: "BSB"
+  command_template: >-
+    {% set dt = now().strftime('%d.%m.%Y %H:%M:%S') %}
+    S0={{ dt }}
+  qos: 0
+  retain: false
+  entity_category: config

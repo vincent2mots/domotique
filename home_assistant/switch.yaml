@@ -1,0 +1,10 @@
+- unique_id: pac_sync_datetime_switch
+  name: "Synchroniser date PAC"
+  command_topic: "BSB"
+
+  command_template: >-
+    {% set dt = now().strftime('%d.%m.%Y %H:%M:%S') %}
+    S0={{ dt }}
+
+  optimistic: true
+  retain: false

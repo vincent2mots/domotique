@@ -1,0 +1,25 @@
+- unique_id: pac_rdc_mode
+  name: "PAC RDC – Mode de fonctionnement"
+  state_topic: "BSB/0/8/700/status"
+  command_topic: "BSB"
+  options:
+    - "Mode protection"
+    - "Automatique"
+    - "Réduit"
+    - "Confort"
+  value_template: >-
+    {% set map = {
+      '0 - Mode protection': 'Mode protection',
+      '1 - Automatique': 'Automatique',
+      '2 - Réduit': 'Réduit',
+      '3 - Confort': 'Confort'
+    } %}
+    {{ map.get(value) }}
+  command_template: >-
+    {% set map = {
+      'Mode protection': 'S700=0',
+      'Automatique': 'S700=1',
+      'Réduit': 'S700=2',
+      'Confort': 'S700=3'
+    } %}
+    {{ map[value] }}

@@ -1,0 +1,50 @@
+   ############################################################
+   ##                         MQTT  BSB LAN                  ##
+   ############################################################
+        - name: "Circuit PAC RDC (au sol)"
+          payload_on: 1
+          payload_off: 0
+          modes:
+            - auto
+            - heat
+            - cool
+            - 'off'
+          mode_state_topic: "BSB/0/8/700/status"
+          mode_state_template: >-
+             {% set values = { '0 - Mode protection':'off', '1 - Automatique':'auto', '2 - Réduit':'cool', '3 - Confort':'heat'} %}
+             {{ values[value] if value in values.keys() else 'off' }}
+          mode_command_topic: "BSB"
+          mode_command_template: >-
+             {% set values = { 'off':'S700=0', 'auto':'S700=1', 'cool':'S700=2', 'heat':'S700=3'} %}
+             {{ values[value] if value in values.keys() else '0' }}
+          current_temperature_topic: "BSB/0/29/8740/status"
+          min_temp: 17
+          max_temp: 24
+          temp_step: 0.5
+          temperature_state_topic: "BSB/0/8/710/status"
+          temperature_command_topic: "BSB"
+          temperature_command_template: "{{'S710='+ (value| string)}}"
+          
+        - name: "Circuit PAC 2 étage"
+          payload_on: 1
+          payload_off: 0
+          modes:
+            - auto
+            - heat
+            - cool
+            - 'off'
+          mode_state_topic: "BSB/0/10/1000/status"
+          mode_state_template: >-
+             {% set values = { '0 - Mode protection':'off', '1 - Automatique':'auto', '2 - Réduit':'cool', '3 - Confort':'heat'} %}
+             {{ values[value] if value in values.keys() else 'off' }}
+          mode_command_topic: "BSB"
+          mode_command_template: >-
+             {% set values = { 'off':'S1000=0', 'auto':'S1000=1', 'cool':'S1000=2', 'heat':'S1000=3'} %}
+             {{ values[value] if value in values.keys() else '0' }}
+          current_temperature_topic: "BSB/0/29/8740/status" # Thermostat du RDC (pas de thermostat en haut)
+          min_temp: 17
+          max_temp: 24
+          temp_step: 0.5
+          temperature_state_topic: "BSB/0/10/1010/status"
+          temperature_command_topic: "BSB"
+          temperature_command_template: "{{'S1010='+ (value| string)}}"

@@ -1,0 +1,40 @@
+homeassistant:
+  external_url: "https://ha.xxxxxxxxxxxx.synology.me:60443" # Indiquer le port, si ce n'est pas du 443 (HTTPS)
+  internal_url: "http://192.168.x.xxx:8123" # adresse locale de Home Assistant avec le port
+  time_zone: Europe/Paris
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: # adresse(s) IP locale(s) du NAS Synology
+    - 192.168.x.xxx
+  ip_ban_enabled: false
+  
+# Ajout de la possibilité de se connecter avec un téléphone
+mobile_app:
+
+# Paramètres MQTT
+mqtt:
+    sensor: !include mqtt.yaml
+    button: !include button.yaml
+    climate: !include climate.yaml
+    select: !include select.yaml
+    switch: !include switch.yaml
+ 
+# Intégration dans Google Home
+google_assistant:
+  project_id: home-assistant-vlr
+  service_account: !include svc_ha_admin.json # Généré depuis la console Google Cloud
+  report_state: true
+  exposed_domains:
+    - climate
+    - switch
+  entity_config:
+    climate.circuit_pac_rdc:
+      name: "Thermostat RDC"
+      room: "Salon"
+    climate.circuit_pac_etage:
+      name: "Thermostat Étage"
+      room: "Étage"
+    switch.synchroniser_date_pac:
+      name: "Synchroniser date PAC"
+      room: "Local technique"

@@ -1,0 +1,251 @@
+    ############################################################
+    ##                         MQTT  BSB LAN                  ##
+    ############################################################
+    # RDC
+    - name: "Mode de chauffe RDC"
+      state_topic: "BSB/0/8/700/status"
+      unique_id: "pac/mode_chauffe_rdc"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température consigne confort RDC"
+      state_topic: "BSB/0/8/710/status"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      unique_id: "pac/temperature_consigne_confort_rdc"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température consigne reduit RDC"
+      state_topic: "BSB/0/8/712/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "pac/temperature_consigne_reduit_rdc"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température thermostat interieur RDC"
+      state_topic: "BSB/0/29/8740/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_thermostat_rdc"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+
+    # Etage
+    - name: "Mode de chauffe Etage"
+      state_topic: "BSB/0/10/1000/status"
+      unique_id: "pac/mode_chauffe_etage"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température consigne confort Etage"
+      state_topic: "BSB/0/10/1010/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "pac/temperature_consigne_confort_etage"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température consigne reduit Etage"
+      state_topic: "BSB/0/10/1012/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "pac/temperature_consigne_reduit_etage"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+
+    # Ballon Eau Chaude
+    - name: "Mode ECS"
+      state_topic: "BSB/0/12/1600/status"
+      unique_id: "pac/mode_ecs"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+
+    # Sondes
+    - name: "Température sonde exterieur"
+      state_topic: "BSB/0/29/8700/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_exterieur"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température Ballon Eau Chaude"
+      state_topic: "BSB/0/29/8830/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_ballon_eau"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température PAC Consigne"
+      state_topic: "BSB/0/28/8411/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_consigne"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température PAC Départ"
+      state_topic: "BSB/0/28/8412/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_sortie"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Température PAC Retour"
+      state_topic: "BSB/0/28/8410/status"
+      unit_of_measurement: °C
+      device_class: temperature
+      unique_id: "temperature/pac_retour"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Régime RDC"
+      state_topic: "BSB/0/26/8000/status"
+      unique_id: "pac/regime_RDC"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Régime Etage"
+      state_topic: "BSB/0/26/8001/status"
+      unique_id: "pac/regime_etage"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Régime ECS"
+      state_topic: "BSB/0/26/8003/status"
+      unique_id: "pac/regime_ECS"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Etat Pompe RDC"
+      state_topic: "BSB/0/29/8730/status"
+      unique_id: "pac/etat_pompe_rdc"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Etat Résistance ECS"
+      state_topic: "BSB/0/29/8821/status"
+      unique_id: "pac/etat_resistance_ecs"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    # Informations complémentaires
+    - name: "Heure"
+      state_topic: "BSB/0/0/1/status"
+      unique_id: "general/horodatage"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Jour / Mois"
+      state_topic: "BSB/0/0/2/status"
+      unique_id: "general/jour_mois"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Année"
+      state_topic: "BSB/0/0/3/status"
+      unique_id: "general/annee"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
+    - name: "Date complète"
+      state_topic: "BSB/0/0/0/status"
+      unique_id: "general/horodatage_complet"
+      device:
+        {
+          identifiers: ["00000002"],
+          name: "BSB-LAN",
+          model: "Olimex ESP32",
+          manufacturer: "Github",
+        }
