@@ -40,9 +40,10 @@ Si on regarde le schéma précédent, voici les prérequis de mon côté :
  - L'acquisition du BSB LAN et du microcontrôleur
  - Un NAS ou n'importe quel système capable de contenir une VM Home Assistant (ou un boitier de chez Nabu Casa si ma configuration vous effraie)
  - Un reverse proxy (Mon NAS en proposait un mais ça dépend des NAS...)
- - Il vous faut une PAC compatible avec le BSB LAN. Voici ici la liste des appareils compatibles : 
+ - Un nom de domaine (j'ai utilisé celui proposé par mon NAS Synology)
+ - Il vous faut une PAC compatible avec le BSB LAN. Voici ici la liste des appareils compatibles : https://docs.bsb-lan.de/fr/supported_heating_systems.html
 
-## Les étapes que j'ai suivies de mon côté
+## Lot 1 : piloter ma PAC depuis mon réseau local avec Home Assistant
 ### Achat du BSB LAN et du micro contrôleur
 Le BSB LAN ne s'achète pas dans le commerce. Si vous en voulez un, il faut envoyer un mail à Frederik Holst (bsb@code-it.de) en anglais ou en allemand. L'appareil devrait vous coûter 50 €.
 
@@ -100,3 +101,66 @@ Là, par contre, j'ai davantage de choses à vous raconter. Pour la configuratio
 Je vous mets tous mes fichiers ici : https://github.com/vincent2mots/domotique/tree/main/home_assistant
 
 **Attention au fichier mqtt.yaml** : il contient les informations de communication vers ma PAC mais si votre PAC est différente, il vous faudra adapter ce fichier (et les autres aussi sans doute!)
+
+Voici le résultat final côté Home Assistant : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/HA_dashboard.png)
+
+Le bouton de synchronisation de la date / heure vient d'une problématique de mon côté : lorsque la PAC subit une coupure de courant trop longue, à son démarrage, elle perd la date du jour et je suis obligé de la resaisir manuellement. 
+
+Le but ici était également de mettre en place côté Google Home une routine quotidienne qui viendrait remettre la bonne date du jour, pour éviter ce genre de soucis.
+
+## Lot 2 : aller plus loin et piloter le tout depuis Google Home
+### Exposition de Home Assistant sur Internet
+#### Etape 1 : Configurer Home Assistant
+
+Dans le fichier **configuration.yaml**, il faut bien s'assurer d'avoir les paramètres suivants de renseignés : 
+``` yaml
+homeassistant:
+  external_url: "https://ha.xxxxxxxxxxxx.synology.me:60443" # Indiquer le port, si ce n'est pas du 443 (HTTPS)
+  internal_url: "http://192.168.x.xxx:8123" # adresse locale de Home Assistant avec le port
+  time_zone: Europe/Paris
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: # adresse(s) IP locale(s) du NAS Synology
+    - 192.168.x.xxx
+  ip_ban_enabled: false
+  
+# Ajout de la possibilité de se connecter avec un téléphone
+mobile_app:
+```
+Ensuite, j'ai fixé dans Home Assistant l'IP de la VM, pour ne pas avoir de soucis par la suite. Dans **Paramètres > Système > Configurer les interfaces réseau > IPV4**
+
+Puis on vérifie les YAML et on redémarre le tout dans **Outils de développement**
+
+#### Etape 2 : Configurer le reverse proxy
+Aller dans **Panneau de configuration > Portail de connexion > Avancé** pour régler le reverse proxy :
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/reverse_proxy_1.png)
+
+Créer une règle comme ceci : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/reverse_proxy_2.png)
+Quelques infos :
+ - La partie source est ce qui sera visible depuis Internet. Mon Home Assistant sera donc accessible depuis l'URL https://ha.xxxx.synology.me:99999
+ - La partie destination c'est la partie interne à mon réseau. Le nom d'hôte c'est l'IP de mon Home Assistant et le port c'est le 8123 (port par défaut côté Home Assistant, que je n'ai pas changé ici)
+
+ L'URL source devra être reprise dans le fichier **configuration.yaml** vu ci-avant dans external_url.
+
+ Ne pas oublier les en-têtes pour que le tout fonctionne : 
+ ![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/reverse_proxy_3.png)
+
+Enfin, pour que le tout fonctionne, il faut produire un certificat qui va permettre de sécuriser vos échanges (la sécurité avant tout). Cela se fait dans **Panneau de configuration > Sécurité > Certificat**. J'ai pour ma part utilisé les certificats Let's Encrypt qui sont gratuits : 
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/certificat.png)
+
+#### Etape 3 : Rediriger les ports
+Maintenant que la partie reverse proxy est faite, il faut que votre box Internet fasse le mapping entre ce qui arrive d'Internet et votre réseau interne en faisant une redirection de port.
+
+De mon côté, j'ai une freebox Ultra. Je me suis donc rendu sur l'URL suivante pour gérer ma box : http://mafreebox.freebox.fr/
+
+Là, je me suis rendu dans **Paramètres de la freebox > Gestion des ports**
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_1.png)
+
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_2.png)
+
+![image](https://raw.githubusercontent.com/vincent2mots/domotique/refs/heads/main/images/freebox_3.png)
+
+### Intégration à Google Home
