@@ -19,22 +19,51 @@ mqtt:
     climate: !include climate.yaml
     select: !include select.yaml
     switch: !include switch.yaml
- 
+
+template:
+- cover: !include cover.yaml
+
 # Intégration dans Google Home
 google_assistant:
   project_id: home-assistant-vlr
   service_account: !include service_account.json # Généré depuis la console Google Cloud
   report_state: true
+  expose_by_default: false # pour ne pas tout exposer! uniquement ce qu'on veut
   exposed_domains:
     - climate
     - switch
+    - cover
   entity_config:
-    climate.circuit_pac_rdc:
-      name: "Thermostat RDC"
+    cover.volet_etage_corrige:
+      name: "Volet bureau étage OK"
+      room: "Bureau étage"
+    cover.volet_capucine_rideau_corrige:
+      name: "Volet Capucine OK"
+      room: "Chambre Capucine"
+    cover.volet_hugo_rideau_corrige:
+      name: "Volet Hugo OK"
+      room: "Chambre Hugo"
+    cover.volet_suite_parentale_rideau_corrige:
+      name: "Volet suite parentale OK"
+      room: "Suite parentale"
+    cover.volet_salle_de_bain_rdc_rideau_corrige:
+      name: "Volet salle de bain rdc OK"
+      room: "Suite parentale"
+    cover.volet_cuisine_rideau_corrige:
+      name: "Volet cuisine OK"
       room: "Salon"
-    climate.circuit_pac_etage:
+    cover.volet_salle_a_manger_fixe_rideau_corrige:
+      name: "Volet salle à manger fixe OK"
+      room: "Salon"
+    cover.volet_salon_rideau_corrige:
+      name: "Volet salon OK"
+      room: "Salon"
+    climate.circuit_pac_rdc_corrige:
+      name: "Thermostat RDC"
+      room: "Rez-de-chaussée"
+    climate.circuit_pac_etage_corrige:
       name: "Thermostat Étage"
       room: "Étage"
-    switch.synchroniser_date_pac:
+    switch.synchroniser_date_pac_corrige:
       name: "Synchroniser date PAC"
       room: "Local technique"
