@@ -58,12 +58,12 @@ google_assistant:
     cover.volet_salon_rideau_corrige:
       name: "Volet salon OK"
       room: "Salon"
-    climate.circuit_pac_rdc_corrige:
+    climate.circuit_pac_rdc_au_sol:
       name: "Thermostat RDC"
       room: "Rez-de-chaussée"
-    climate.circuit_pac_etage_corrige:
+    climate.circuit_pac_2_etage:
       name: "Thermostat Étage"
       room: "Étage"
-    switch.synchroniser_date_pac_corrige:
+    switch.synchroniser_date_pac:
       name: "Synchroniser date PAC"
       room: "Local technique"

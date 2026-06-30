@@ -135,7 +135,7 @@ Le but ici était également de mettre en place côté Google Home une routine q
 Dans le fichier **configuration.yaml**, il faut bien s'assurer d'avoir les paramètres suivants de renseignés : 
 ``` yaml
 homeassistant:
-  external_url: "https://ha.xxxxxxxxxxxx.synology.me:60443" # Indiquer le port, si ce n'est pas du 443 (HTTPS)
+  external_url: "https://ha.xxxxxxxxxxxx.synology.me:88888" # Indiquer le port, si ce n'est pas du 443 (HTTPS)
   internal_url: "http://192.168.x.xxx:8123" # adresse locale de Home Assistant avec le port
   time_zone: Europe/Paris
 

@@ -1,4 +1,4 @@
-## Inversion des volets (souci lié à Tuya)
+## Inversion des volets
 
 ### ETAGE
 
@@ -41,7 +41,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_capucine_rideau_corrige
-    name: Volet bureau étage
+    name: Volet Chambre Capucine
     position: '{{ 100 - state_attr(''cover.volet_capucine_rideau'', ''current_position'')| int }}'
     
 # Volet chambre Hugo
@@ -62,7 +62,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_hugo_rideau_corrige
-    name: Volet bureau étage
+    name: Volet Chambre Hugo
     position: '{{ 100 - state_attr(''cover.volet_hugo_rideau'', ''current_position'')| int }}'
     
     
@@ -85,7 +85,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_suite_parentale_rideau_corrige
-    name: Volet bureau étage
+    name: Volet suite parentale chambre
     position: '{{ 100 - state_attr(''cover.volet_suite_parentale_rideau'', ''current_position'')| int }}'
     
 # Volet suite parentale SDB
@@ -106,7 +106,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_salle_de_bain_rdc_rideau_corrige
-    name: Volet bureau étage
+    name: Volet suite parentale SDB
     position: '{{ 100 - state_attr(''cover.volet_salle_de_bain_rdc_rideau'', ''current_position'')| int }}'
     
 # Volet cuisine
@@ -127,7 +127,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_cuisine_rideau_corrige
-    name: Volet bureau étage
+    name: Volet cuisine
     position: '{{ 100 - state_attr(''cover.volet_cuisine_rideau'', ''current_position'')| int }}'
     
 # Volet salon fixe
@@ -148,7 +148,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_salle_a_manger_fixe_rideau_corrige
-    name: Volet bureau étage
+    name: Volet salon fixe
     position: '{{ 100 - state_attr(''cover.volet_salle_a_manger_fixe_rideau'', ''current_position'')| int }}'
     
 # Volet salon
@@ -169,7 +169,7 @@
         position: '{{ 100 - position }}'
       action: cover.set_cover_position
     default_entity_id: cover.volet_salon_rideau_corrige
-    name: Volet bureau étage
+    name: Volet salon
     position: '{{ 100 - state_attr(''cover.volet_salon_rideau'', ''current_position'')| int }}'
     
     
